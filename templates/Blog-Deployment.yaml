@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.BlogDeployment.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.BlogDeployment.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.BlogDeployment.app }}
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: 590183982624.dkr.ecr.us-east-1.amazonaws.com/alamzia23repo:v1
+        image: {{ .Values.BlogDeployment.image.repository }}:{{ .Values.BlogDeployment.image.tag }}
         ports:
         - containerPort: 5000
         env:
