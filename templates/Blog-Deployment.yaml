@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.BlogDeployment.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.BlogDeployment.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.BlogDeployment.app }}
+    spec:
+      containers:
+      - name: backend-container
+        image: 590183982624.dkr.ecr.us-east-1.amazonaws.com/alamzia23repo:v1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGODB_URI
+          value: "mongodb+srv://alamziyafzd:8I24Qyhwg5X7hv6G@cluster0.ffzdu.mongodb.net/"
+        - name: JWT_SECRET
+          value: "MySecretBlog"
