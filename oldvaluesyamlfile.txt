@@ -1,0 +1,9 @@
+BlogDeployment:
+  name: my-app-deployment
+  replicas: 1
+  app: my-backend-app
+
+servicefile:
+  name: backend-service
+  app: my-backend-app
+  type: LoadBalancer
